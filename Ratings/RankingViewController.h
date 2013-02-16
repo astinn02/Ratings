@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RatePlayerViewController.h"
+@interface RankingViewController : UITableViewController <RatePlayerViewControllerDelegate>
 
-@interface RankingViewController : UITableViewController
+@property (nonatomic, strong) NSMutableArray *rankedPlayers;
+@property (nonatomic, assign) int requiredRating;
+
+- (IBAction)done:(id)sender;
 
 @end

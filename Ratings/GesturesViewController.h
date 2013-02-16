@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  GesturesViewController.h
 //  Ratings
 //
 //  Created by Drew Stinnett on 1/11/13.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface GesturesViewController : UIViewController
+
+@property (nonatomic, strong) IBOutlet UISwipeGestureRecognizer *swipeGestureRecognizer;
+@property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) NSArray *players;
 
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController<UISplitViewControllerDelegate, UIPopoverControllerDelegate>
+
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
+
 
 @end

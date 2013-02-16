@@ -7,12 +7,90 @@
 //
 
 #import "AppDelegate.h"
+#import "Player.h"
+#import "PlayersViewController.h"
+#import "GesturesViewController.h"
 
 @implementation AppDelegate
+{
+    NSMutableArray *_players;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    _players = [NSMutableArray arrayWithCapacity:20];
+    Player *player = [[Player alloc] init];
+    player.name = @"Bill Evans";
+    player.game = @"Tic-Tac-Toe";
+    player.rating = 4;
+    [_players addObject:player];
+    
+    player = [[Player alloc] init];
+    player.name = @"Oscar Peterson";
+    player.game = @"Spin the Bottle";
+    player.rating = 5;
+    [_players addObject:player];
+    
+    player = [[Player alloc] init];
+    player.name = @"Dave Brubeck";
+    player.game = @"Texas Hold’em Poker";
+    player.rating = 2;
+    [_players addObject:player];
+    
+    player = [[Player alloc] init];
+    player.name = @"Miles Davis";
+    player.game = @"Spin the Bottle";
+    player.rating = 2;
+    [_players addObject:player];
+    
+    player = [[Player alloc] init];
+    player.name = @"Louis Armstrong";
+    player.game = @"Texas Hold’em Poker";
+    player.rating = 5;
+    [_players addObject:player];
+    
+    player = [[Player alloc] init];
+    player.name = @"Elvis Presley";
+    player.game = @"Spin the Bottle";
+    player.rating = 2;
+    [_players addObject:player];
+    
+    player = [[Player alloc] init];
+    player.name = @"Jim Morrison";
+    player.game = @"Texas Hold’em Poker";
+    player.rating = 1;
+    [_players addObject:player];
+    
+    UITabBarController *tabBarController;
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+    {
+        tabBarController = (UITabBarController *)self.window.rootViewController;
+        
+    }
+    else
+    {
+        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+        
+        id detailViewController = [splitViewController.viewControllers lastObject];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        tabBarController = [storyboard instantiateInitialViewController];
+        NSArray *viewControllers = @[tabBarController, detailViewController];
+        splitViewController.viewControllers = viewControllers;
+        splitViewController.delegate = detailViewController;
+        
+        
+        //splitViewController.delegate = [splitViewController.viewControllers lastObject];
+    }
+    
+    UINavigationController *navigationController = [tabBarController viewControllers][0];
+    PlayersViewController *playersViewController = [navigationController viewControllers][0];
+    playersViewController.players = _players;
+    GesturesViewController *gesturesViewController = [tabBarController viewControllers][1];
+    gesturesViewController.players = _players;
+    
     return YES;
 }
 							
